@@ -125,14 +125,18 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="section-spacing bg-gradient-to-br from-navy-950 to-navy-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-gold-500/10 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto container-padding text-center">
-          <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6">
+      {/* Hero Section with Background */}
+      <section className="section-spacing relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 to-navy-900/70" />
+        <div className="relative z-10 max-w-7xl mx-auto container-padding text-center text-white">
+          <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
             Project <span className="text-gold-400">Gallery</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
             Browse through our stunning collection of architectural excellence and interior designs
           </p>
         </div>
@@ -175,8 +179,8 @@ const Gallery = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <h3 className="font-semibold text-sm mb-1">{image.title}</h3>
-                      <p className="text-xs text-white/80">{image.description}</p>
+                      <h3 className="font-semibold text-sm mb-1 drop-shadow-lg">{image.title}</h3>
+                      <p className="text-xs text-white/90 drop-shadow-md">{image.description}</p>
                     </div>
                   </div>
                 </div>

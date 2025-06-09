@@ -5,105 +5,21 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import { 
-  MapPin, 
-  Home, 
-  Calendar, 
-  Bed, 
-  Bath, 
-  Square,
-  ArrowRight,
-  Filter
+  MapPin,
+  Calendar,
+  Home,
+  Car,
+  Wifi,
+  Shield,
+  Droplets,
+  Trees,
+  Dumbbell,
+  Users,
+  Star
 } from 'lucide-react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-
-  const projects = [
-    {
-      id: 1,
-      name: "Trinethra Heights",
-      status: "ongoing",
-      type: "apartment",
-      location: "Ramachandra Rao Pet, Kakinada",
-      price: "₹45 - 75 Lakhs",
-      possession: "Dec 2024",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["2, 3 BHK", "Premium Amenities", "Vaastu Compliant"],
-      bedrooms: "2-3 BHK",
-      bathrooms: "2-3",
-      area: "1100-1650 Sq.ft"
-    },
-    {
-      id: 2,
-      name: "Golden Palms Villas",
-      status: "completed",
-      type: "villa",
-      location: "Salipeta, Kakinada",
-      price: "₹1.2 - 2.5 Cr",
-      possession: "Ready to Move",
-      image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Independent Villas", "Private Garden", "Premium Location"],
-      bedrooms: "3-4 BHK",
-      bathrooms: "3-4",
-      area: "2200-3200 Sq.ft"
-    },
-    {
-      id: 3,
-      name: "Royal Residency",
-      status: "upcoming",
-      type: "apartment",
-      location: "Suryaraopeta, Kakinada",
-      price: "₹55 - 90 Lakhs",
-      possession: "Mar 2025",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Luxury Apartments", "Sky Lounge", "Smart Home Features"],
-      bedrooms: "2-3 BHK",
-      bathrooms: "2-3",
-      area: "1200-1800 Sq.ft"
-    },
-    {
-      id: 4,
-      name: "Green Valley Plots",
-      status: "ongoing",
-      type: "plot",
-      location: "Kotananduru, Kakinada",
-      price: "₹25 - 45 Lakhs",
-      possession: "Immediate",
-      image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["HMDA Approved", "Gated Community", "40x60 Plots"],
-      bedrooms: "Plot",
-      bathrooms: "-",
-      area: "200-300 Sq.yd"
-    },
-    {
-      id: 5,
-      name: "Marina Bay Towers",
-      status: "upcoming",
-      type: "apartment",
-      location: "One Town, Kakinada",
-      price: "₹65 - 1.2 Cr",
-      possession: "Jun 2025",
-      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Sea View", "Premium Amenities", "High-rise Living"],
-      bedrooms: "2-4 BHK",
-      bathrooms: "2-4",
-      area: "1300-2500 Sq.ft"
-    },
-    {
-      id: 6,
-      name: "Orchid Gardens",
-      status: "completed",
-      type: "villa",
-      location: "Ramanayyapeta, Kakinada",
-      price: "₹85 Lakhs - 1.5 Cr",
-      possession: "Ready to Move",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Garden Villas", "Premium Interiors", "Gated Community"],
-      bedrooms: "3 BHK",
-      bathrooms: "3",
-      area: "1800-2200 Sq.ft"
-    }
-  ];
 
   const filters = [
     { key: 'all', label: 'All Projects' },
@@ -112,54 +28,154 @@ const Projects = () => {
     { key: 'completed', label: 'Completed' }
   ];
 
-  const typeFilters = [
-    { key: 'all', label: 'All Types' },
-    { key: 'apartment', label: 'Apartments' },
-    { key: 'villa', label: 'Villas' },
-    { key: 'plot', label: 'Plots' }
+  const projects = [
+    {
+      id: 1,
+      name: "Trinethra Heights",
+      location: "Ramachandra Rao Pet, Kakinada",
+      status: "ongoing",
+      type: "Luxury Apartments",
+      price: "₹45 - 75 Lakhs",
+      possession: "Dec 2024",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["3/4 BHK", "Gym", "Swimming Pool", "24/7 Security"],
+      amenities: [
+        { icon: Home, name: "3/4 BHK Apartments" },
+        { icon: Car, name: "Covered Parking" },
+        { icon: Dumbbell, name: "Fitness Center" },
+        { icon: Shield, name: "24/7 Security" }
+      ]
+    },
+    {
+      id: 2,
+      name: "Golden Palms Villas",
+      location: "One Town, Kakinada",
+      status: "upcoming",
+      type: "Independent Villas",
+      price: "₹1.2 - 2.5 Cr",
+      possession: "Mar 2025",
+      image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["4/5 BHK", "Private Garden", "Clubhouse", "Swimming Pool"],
+      amenities: [
+        { icon: Home, name: "4/5 BHK Villas" },
+        { icon: Trees, name: "Private Gardens" },
+        { icon: Users, name: "Clubhouse" },
+        { icon: Droplets, name: "Swimming Pool" }
+      ]
+    },
+    {
+      id: 3,
+      name: "Royal Residency",
+      location: "Salipeta, Kakinada",
+      status: "completed",
+      type: "Premium Flats",
+      price: "₹35 - 60 Lakhs",
+      possession: "Completed",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["2/3 BHK", "Rooftop Garden", "Power Backup", "Lift"],
+      amenities: [
+        { icon: Home, name: "2/3 BHK Flats" },
+        { icon: Trees, name: "Rooftop Garden" },
+        { icon: Wifi, name: "Power Backup" },
+        { icon: Shield, name: "Gated Community" }
+      ]
+    },
+    {
+      id: 4,
+      name: "Marina Bay Towers",
+      location: "Kakinada Port Area",
+      status: "ongoing",
+      type: "High-Rise Apartments",
+      price: "₹55 - 95 Lakhs",
+      possession: "Jun 2025",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["3/4 BHK", "Sea View", "Infinity Pool", "Sky Lounge"],
+      amenities: [
+        { icon: Home, name: "3/4 BHK Apartments" },
+        { icon: Droplets, name: "Infinity Pool" },
+        { icon: Users, name: "Sky Lounge" },
+        { icon: Car, name: "Multi-level Parking" }
+      ]
+    },
+    {
+      id: 5,
+      name: "Orchid Gardens",
+      location: "Surya Raopet, Kakinada",
+      status: "upcoming",
+      type: "Garden Villas",
+      price: "₹85 Lakhs - 1.8 Cr",
+      possession: "Sep 2025",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["3/4 BHK", "Landscaped Gardens", "Jogging Track", "Kids Play Area"],
+      amenities: [
+        { icon: Home, name: "3/4 BHK Villas" },
+        { icon: Trees, name: "Landscaped Gardens" },
+        { icon: Users, name: "Community Hall" },
+        { icon: Shield, name: "Gated Security" }
+      ]
+    },
+    {
+      id: 6,
+      name: "Green Valley Plots",
+      location: "Ramanayyapeta, Kakinada",
+      status: "completed",
+      type: "Residential Plots",
+      price: "₹25 - 45 Lakhs",
+      possession: "Ready to Build",
+      image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["DTCP Approved", "40x60 to 50x80", "Underground Drainage", "Wide Roads"],
+      amenities: [
+        { icon: MapPin, name: "DTCP Approved" },
+        { icon: Droplets, name: "Underground Drainage" },
+        { icon: Shield, name: "Boundary Wall" },
+        { icon: Wifi, name: "Street Lighting" }
+      ]
+    }
   ];
 
-  const filteredProjects = projects.filter(project => {
-    if (activeFilter === 'all') return true;
-    return project.status === activeFilter || project.type === activeFilter;
-  });
+  const filteredProjects = projects.filter(project => 
+    activeFilter === 'all' || project.status === activeFilter
+  );
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'ongoing': return 'bg-blue-500';
-      case 'upcoming': return 'bg-green-500';
-      case 'completed': return 'bg-gold-500';
+      case 'upcoming': return 'bg-orange-500';
+      case 'completed': return 'bg-green-500';
       default: return 'bg-gray-500';
     }
   };
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="section-spacing bg-gradient-to-br from-navy-950 to-navy-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-gold-500/10 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto container-padding text-center">
-          <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6">
+      {/* Hero Section with Background */}
+      <section className="section-spacing relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 to-navy-900/70" />
+        <div className="relative z-10 max-w-7xl mx-auto container-padding text-center text-white">
+          <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
             Our <span className="text-gold-400">Projects</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
-            Discover our complete portfolio of luxury residential and commercial developments across Kakinada
+          <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
+            Discover our portfolio of luxury residential and commercial developments across Kakinada
           </p>
         </div>
       </section>
 
-      {/* Filters */}
+      {/* Filter Section */}
       <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="flex flex-wrap gap-4 justify-center">
-            {[...filters, ...typeFilters.slice(1)].map((filter) => (
+            {filters.map((filter) => (
               <Button
                 key={filter.key}
                 variant={activeFilter === filter.key ? "default" : "outline"}
                 onClick={() => setActiveFilter(filter.key)}
                 className={activeFilter === filter.key ? "premium-button" : ""}
               >
-                <Filter className="w-4 h-4 mr-2" />
                 {filter.label}
               </Button>
             ))}
@@ -177,7 +193,7 @@ const Projects = () => {
                   <img 
                     src={project.image} 
                     alt={project.name}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4">
                     <Badge className={`${getStatusColor(project.status)} text-white capitalize`}>
@@ -185,10 +201,11 @@ const Projects = () => {
                     </Badge>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <Badge variant="secondary" className="bg-white/90 text-navy-900">
+                    <Badge className="bg-white/90 text-navy-900">
                       {project.type}
                     </Badge>
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
                 <CardContent className="p-6">
@@ -197,57 +214,35 @@ const Projects = () => {
                   </h3>
                   
                   <div className="flex items-center text-charcoal-600 mb-3">
-                    <MapPin className="w-4 h-4 mr-2" />
+                    <MapPin className="w-4 h-4 mr-2 text-gold-600" />
                     <span className="text-sm">{project.location}</span>
                   </div>
-
-                  <div className="grid grid-cols-3 gap-4 mb-4 text-sm">
-                    <div className="flex items-center">
-                      <Bed className="w-4 h-4 mr-1 text-gold-600" />
-                      <span>{project.bedrooms}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Bath className="w-4 h-4 mr-1 text-gold-600" />
-                      <span>{project.bathrooms}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Square className="w-4 h-4 mr-1 text-gold-600" />
-                      <span>{project.area}</span>
-                    </div>
+                  
+                  <div className="flex items-center text-charcoal-600 mb-4">
+                    <Calendar className="w-4 h-4 mr-2 text-gold-600" />
+                    <span className="text-sm">Possession: {project.possession}</span>
                   </div>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.features.map((feature, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {feature}
-                      </Badge>
+                  
+                  <div className="text-2xl font-bold text-gold-600 mb-4">
+                    {project.price}
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    {project.amenities.slice(0, 4).map((amenity, index) => (
+                      <div key={index} className="flex items-center text-xs text-charcoal-600">
+                        <amenity.icon className="w-3 h-3 mr-1 text-gold-600" />
+                        <span>{amenity.name}</span>
+                      </div>
                     ))}
                   </div>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <div className="font-bold text-lg text-navy-900">{project.price}</div>
-                      <div className="flex items-center text-sm text-charcoal-600">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {project.possession}
-                      </div>
-                    </div>
-                  </div>
-
+                  
                   <Button className="w-full premium-button">
                     View Details
-                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-xl text-charcoal-600">No projects found matching your criteria.</p>
-            </div>
-          )}
         </div>
       </section>
 
@@ -257,16 +252,16 @@ const Projects = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="text-navy-950">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
-                Interested in Our Projects?
+                Find Your Perfect Home
               </h2>
               <p className="text-lg leading-relaxed">
-                Get detailed information, floor plans, and schedule a site visit for any of our projects.
+                Let us help you discover the ideal property that matches your lifestyle and budget.
               </p>
             </div>
             <div>
               <LeadCaptureForm 
-                title="Get Project Details"
-                subtitle="Download brochures and schedule site visits"
+                title="Property Inquiry"
+                subtitle="Tell us about your requirements"
                 context="projects_page"
                 className="bg-white"
               />

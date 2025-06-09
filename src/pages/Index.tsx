@@ -3,6 +3,7 @@ import HeroSection from '@/components/HeroSection';
 import ProjectsShowcase from '@/components/ProjectsShowcase';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { 
   Award,
   Shield,
@@ -56,6 +57,20 @@ const Index = () => {
       rating: 5,
       text: "From planning to possession, the entire journey was smooth. The quality and amenities are simply outstanding.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      name: "Lakshmi Devi",
+      project: "Marina Bay Towers",
+      rating: 5,
+      text: "Best investment decision we ever made. The location, amenities, and build quality are exceptional.",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      name: "Venkata Rao",
+      project: "Orchid Gardens",
+      rating: 5,
+      text: "Trinethra delivered exactly what they promised. The handover was smooth and the after-sales service is excellent.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     }
   ];
 
@@ -64,19 +79,22 @@ const Index = () => {
       icon: Home,
       title: "Residential Projects",
       description: "Luxury apartments and villas designed for modern families",
-      projects: "15+ Projects"
+      projects: "15+ Projects",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
     },
     {
       icon: Building,
-      title: "Commercial Spaces",
+      title: "Commercial Spaces", 
       description: "Premium office complexes and retail developments",
-      projects: "8+ Projects"
+      projects: "8+ Projects",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
     },
     {
       icon: Compass,
       title: "Plot Development",
       description: "Thoughtfully planned residential and commercial plots",
-      projects: "5+ Projects"
+      projects: "5+ Projects",
+      image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
     }
   ];
 
@@ -123,7 +141,7 @@ const Index = () => {
       {/* Projects Showcase */}
       <ProjectsShowcase />
 
-      {/* Services Section */}
+      {/* Services Section with Images */}
       <section className="section-spacing bg-gradient-to-br from-navy-950 to-navy-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-gold-500/10 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto container-padding">
@@ -140,16 +158,28 @@ const Index = () => {
             {services.map((service, index) => (
               <Card 
                 key={index}
-                className="bg-white/10 border-white/20 hover:bg-white/15 transition-all duration-300 group"
+                className="bg-white/10 border-white/20 hover:bg-white/15 transition-all duration-300 group overflow-hidden"
               >
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <service.icon className="w-12 h-12 text-gold-400 group-hover:scale-110 transition-transform duration-300" />
-                    <span className="text-gold-400 font-semibold">{service.projects}</span>
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent" />
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-gold-500 text-navy-900 px-3 py-1 rounded-full text-sm font-semibold">
+                      {service.projects}
+                    </span>
                   </div>
-                  <h3 className="font-playfair text-2xl font-bold mb-4">
-                    {service.title}
-                  </h3>
+                </div>
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <service.icon className="w-8 h-8 text-gold-400 mr-3" />
+                    <h3 className="font-playfair text-2xl font-bold">
+                      {service.title}
+                    </h3>
+                  </div>
                   <p className="text-white/80 leading-relaxed">
                     {service.description}
                   </p>
@@ -167,8 +197,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="section-spacing bg-gradient-to-b from-gray-50 to-white">
+      {/* Testimonials Section with Carousel */}
+      <section className="section-spacing bg-gradient-to-br from-gray-50 via-white to-gold-50">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center mb-16">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-navy-900 mb-6">
@@ -179,36 +209,39 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card 
-                key={index}
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white"
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover mr-4"
-                    />
-                    <div>
-                      <h4 className="font-semibold text-navy-900">{testimonial.name}</h4>
-                      <p className="text-sm text-charcoal-600">{testimonial.project}</p>
-                      <div className="flex space-x-1 mt-1">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-gold-500 text-gold-500" />
-                        ))}
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white h-full">
+                    <CardContent className="p-8 flex flex-col h-full">
+                      <div className="flex items-center mb-6">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-full object-cover mr-4 ring-4 ring-gold-200"
+                        />
+                        <div>
+                          <h4 className="font-semibold text-navy-900 text-lg">{testimonial.name}</h4>
+                          <p className="text-sm text-charcoal-600">{testimonial.project}</p>
+                          <div className="flex space-x-1 mt-1">
+                            {[...Array(testimonial.rating)].map((_, i) => (
+                              <Star key={i} className="w-4 h-4 fill-gold-500 text-gold-500" />
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <p className="text-charcoal-700 leading-relaxed italic">
-                    "{testimonial.text}"
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                      <p className="text-charcoal-700 leading-relaxed italic flex-grow">
+                        "{testimonial.text}"
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
+          </Carousel>
         </div>
       </section>
 
