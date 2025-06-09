@@ -13,13 +13,15 @@ interface LeadCaptureFormProps {
   subtitle?: string;
   context?: string;
   className?: string;
+  onSuccess?: () => void;
 }
 
 const LeadCaptureForm = ({ 
   title = "Get In Touch", 
   subtitle = "Let us help you find your dream property",
   context = "general",
-  className = ""
+  className = "",
+  onSuccess
 }: LeadCaptureFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -51,6 +53,11 @@ const LeadCaptureForm = ({
       });
 
       setFormData({ name: '', phone: '', email: '', message: '' });
+      
+      // Call onSuccess callback if provided
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       toast({
         title: "Something went wrong",
