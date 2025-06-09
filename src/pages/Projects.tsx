@@ -1,5 +1,5 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,11 +15,15 @@ import {
   Trees,
   Dumbbell,
   Users,
-  Star
+  Star,
+  ArrowLeft,
+  Phone
 } from 'lucide-react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const filters = [
     { key: 'all', label: 'All Projects' },
@@ -44,6 +48,12 @@ const Projects = () => {
         { icon: Car, name: "Covered Parking" },
         { icon: Dumbbell, name: "Fitness Center" },
         { icon: Shield, name: "24/7 Security" }
+      ],
+      description: "Experience luxury living at its finest with Trinethra Heights. This premium residential complex offers spacious 3 and 4 BHK apartments with world-class amenities.",
+      gallery: [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
@@ -61,6 +71,11 @@ const Projects = () => {
         { icon: Trees, name: "Private Gardens" },
         { icon: Users, name: "Clubhouse" },
         { icon: Droplets, name: "Swimming Pool" }
+      ],
+      description: "Discover the epitome of luxury living with Golden Palms Villas. These independent villas offer spacious layouts, private gardens, and premium amenities.",
+      gallery: [
+        "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
@@ -78,6 +93,10 @@ const Projects = () => {
         { icon: Trees, name: "Rooftop Garden" },
         { icon: Wifi, name: "Power Backup" },
         { icon: Shield, name: "Gated Community" }
+      ],
+      description: "Royal Residency offers premium 2 and 3 BHK flats with modern amenities and excellent connectivity.",
+      gallery: [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
@@ -95,6 +114,10 @@ const Projects = () => {
         { icon: Droplets, name: "Infinity Pool" },
         { icon: Users, name: "Sky Lounge" },
         { icon: Car, name: "Multi-level Parking" }
+      ],
+      description: "Marina Bay Towers offers stunning sea views and luxury high-rise living with premium amenities.",
+      gallery: [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
@@ -112,6 +135,10 @@ const Projects = () => {
         { icon: Trees, name: "Landscaped Gardens" },
         { icon: Users, name: "Community Hall" },
         { icon: Shield, name: "Gated Security" }
+      ],
+      description: "Orchid Gardens features beautifully designed villas surrounded by lush landscaping and modern amenities.",
+      gallery: [
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
@@ -129,6 +156,10 @@ const Projects = () => {
         { icon: Droplets, name: "Underground Drainage" },
         { icon: Shield, name: "Boundary Wall" },
         { icon: Wifi, name: "Street Lighting" }
+      ],
+      description: "DTCP approved residential plots with all modern infrastructure and ready-to-build facilities.",
+      gallery: [
+        "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ]
     }
   ];
@@ -146,6 +177,141 @@ const Projects = () => {
     }
   };
 
+  const handleViewDetails = (project: any) => {
+    setSelectedProject(project);
+    setSearchParams({ id: project.id.toString() });
+  };
+
+  const handleBackToProjects = () => {
+    setSelectedProject(null);
+    setSearchParams({});
+  };
+
+  // Check if there's a project ID in URL params
+  useEffect(() => {
+    const projectId = searchParams.get('id');
+    if (projectId) {
+      const project = projects.find(p => p.id === parseInt(projectId));
+      if (project) {
+        setSelectedProject(project);
+      }
+    }
+  }, [searchParams]);
+
+  // If a project is selected, show detailed view
+  if (selectedProject) {
+    return (
+      <div className="min-h-screen pt-20">
+        {/* Project Detail Header */}
+        <section className="section-spacing relative overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${selectedProject.image})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 to-navy-900/70" />
+          <div className="relative z-10 max-w-7xl mx-auto container-padding text-white">
+            <Button 
+              variant="outline" 
+              className="mb-6 border-white/50 text-white hover:bg-white hover:text-navy-900"
+              onClick={handleBackToProjects}
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Projects
+            </Button>
+            <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
+              {selectedProject.name}
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 max-w-4xl leading-relaxed drop-shadow-lg">
+              {selectedProject.description}
+            </p>
+          </div>
+        </section>
+
+        {/* Project Details */}
+        <section className="section-spacing bg-white">
+          <div className="max-w-7xl mx-auto container-padding">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h2 className="font-playfair text-3xl font-bold text-navy-900 mb-6">Project Overview</h2>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <span className="font-semibold">Location:</span>
+                    <span>{selectedProject.location}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <span className="font-semibold">Type:</span>
+                    <span>{selectedProject.type}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <span className="font-semibold">Price Range:</span>
+                    <span className="text-gold-600 font-bold">{selectedProject.price}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <span className="font-semibold">Possession:</span>
+                    <span>{selectedProject.possession}</span>
+                  </div>
+                </div>
+
+                <h3 className="font-playfair text-2xl font-bold text-navy-900 mb-4">Amenities</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {selectedProject.amenities.map((amenity: any, index: number) => (
+                    <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                      <amenity.icon className="w-5 h-5 text-gold-600 mr-3" />
+                      <span className="text-sm">{amenity.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-playfair text-2xl font-bold text-navy-900 mb-4">Project Gallery</h3>
+                <div className="grid grid-cols-1 gap-4">
+                  {selectedProject.gallery?.map((image: string, index: number) => (
+                    <img 
+                      key={index}
+                      src={image} 
+                      alt={`${selectedProject.name} ${index + 1}`}
+                      className="w-full h-64 object-cover rounded-lg shadow-lg"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="section-spacing bg-gradient-to-r from-gold-500 to-gold-600">
+          <div className="max-w-4xl mx-auto container-padding">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="text-navy-950">
+                <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+                  Interested in {selectedProject.name}?
+                </h2>
+                <p className="text-lg leading-relaxed mb-6">
+                  Schedule a visit or get more details about this project.
+                </p>
+                <Button className="bg-navy-900 hover:bg-navy-800 text-white">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now
+                </Button>
+              </div>
+              <div>
+                <LeadCaptureForm 
+                  title="Project Inquiry"
+                  subtitle={`Get details about ${selectedProject.name}`}
+                  context={`project_${selectedProject.id}`}
+                  className="bg-white"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Regular projects listing view
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section with Background */}
@@ -236,7 +402,10 @@ const Projects = () => {
                     ))}
                   </div>
                   
-                  <Button className="w-full premium-button">
+                  <Button 
+                    className="w-full premium-button"
+                    onClick={() => handleViewDetails(project)}
+                  >
                     View Details
                   </Button>
                 </CardContent>

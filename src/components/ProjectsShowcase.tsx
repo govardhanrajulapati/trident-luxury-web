@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,6 +8,7 @@ import { ArrowRight, MapPin, Home, Calendar } from 'lucide-react';
 
 const ProjectsShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const navigate = useNavigate();
 
   const projects = [
     {
@@ -101,6 +103,16 @@ const ProjectsShowcase = () => {
     }
   };
 
+  const handleViewDetails = (projectId: number) => {
+    // Navigate to projects page with specific project ID
+    navigate(`/projects?id=${projectId}`);
+  };
+
+  const handleScheduleVisit = (projectId: number) => {
+    // Navigate to contact page with project context
+    navigate(`/contact?project=${projectId}`);
+  };
+
   return (
     <section className="section-spacing bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto container-padding">
@@ -158,7 +170,11 @@ const ProjectsShowcase = () => {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button size="icon" className="bg-gold-500 hover:bg-gold-600 text-navy-900">
+                  <Button 
+                    size="icon" 
+                    className="bg-gold-500 hover:bg-gold-600 text-navy-900"
+                    onClick={() => handleViewDetails(project.id)}
+                  >
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
@@ -197,10 +213,18 @@ const ProjectsShowcase = () => {
                   </div>
 
                   <div className="flex gap-2 pt-4">
-                    <Button className="flex-1 premium-button text-sm">
+                    <Button 
+                      className="flex-1 premium-button text-sm"
+                      onClick={() => handleViewDetails(project.id)}
+                    >
                       View Details
                     </Button>
-                    <Button variant="outline" size="icon" className="border-navy-200 hover:border-gold-400">
+                    <Button 
+                      variant="outline" 
+                      size="icon" 
+                      className="border-navy-200 hover:border-gold-400"
+                      onClick={() => handleScheduleVisit(project.id)}
+                    >
                       <Calendar className="w-4 h-4" />
                     </Button>
                   </div>
@@ -212,7 +236,10 @@ const ProjectsShowcase = () => {
 
         {/* View All Projects CTA */}
         <div className="text-center mt-16">
-          <Button className="premium-button text-lg px-8 py-4">
+          <Button 
+            className="premium-button text-lg px-8 py-4"
+            onClick={() => navigate('/projects')}
+          >
             View All Projects
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>

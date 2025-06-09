@@ -45,7 +45,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       {/* Background Slides */}
       {heroSlides.map((slide, index) => (
         <div
@@ -58,16 +58,16 @@ const HeroSection = () => {
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slide.image})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-900/60 to-navy-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-900/70 to-navy-950/50" />
         </div>
       ))}
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center pt-20">
+      <div className="relative z-10 min-h-screen flex items-center pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
-            <div className="max-w-4xl">
+            <div className="max-w-4xl order-2 xl:order-1">
               <div className="animate-fade-in">
                 <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-4 md:mb-6 drop-shadow-2xl">
                   {heroSlides[currentSlide].title}
@@ -75,7 +75,7 @@ const HeroSection = () => {
                   <span className="text-gold-400 drop-shadow-lg">{heroSlides[currentSlide].subtitle}</span>
                 </h1>
                 
-                <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-6 md:mb-8 leading-relaxed max-w-3xl drop-shadow-lg">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-6 md:mb-8 leading-relaxed max-w-3xl drop-shadow-lg">
                   {heroSlides[currentSlide].description}
                 </p>
 
@@ -115,10 +115,10 @@ const HeroSection = () => {
             </div>
 
             {/* Right Content - Lead Form Card */}
-            <div className="lg:flex justify-end hidden">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20 max-w-md w-full">
-                <h3 className="font-playfair text-2xl font-bold text-white mb-2">Get Started Today</h3>
-                <p className="text-white/80 mb-6">Schedule a visit to your dream home</p>
+            <div className="order-1 xl:order-2 flex justify-center xl:justify-end">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 lg:p-8 shadow-2xl border border-white/20 max-w-md w-full">
+                <h3 className="font-playfair text-xl lg:text-2xl font-bold text-white mb-2">Get Started Today</h3>
+                <p className="text-white/80 mb-6 text-sm lg:text-base">Schedule a visit to your dream home</p>
                 <LeadCaptureForm 
                   title=""
                   subtitle=""
@@ -134,9 +134,9 @@ const HeroSection = () => {
       {/* Lead Form Modal */}
       {showLeadForm && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+          <div className="bg-white rounded-2xl p-6 lg:p-8 max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-playfair text-2xl font-bold text-navy-900">Schedule Your Visit</h3>
+              <h3 className="font-playfair text-xl lg:text-2xl font-bold text-navy-900">Schedule Your Visit</h3>
               <Button 
                 variant="ghost" 
                 size="icon"
